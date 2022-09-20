@@ -23,6 +23,7 @@ def earth_polychromatic_imaging_camera(token):
         with open(filename, 'wb') as file:
             file.write(image_response.content)
 
+
 def main():
     env = Env()
     env.read_env()
@@ -31,5 +32,7 @@ def main():
 
     earth_polychromatic_imaging_camera(token)
 
+
 if __name__ == '__main__':
     main()
+

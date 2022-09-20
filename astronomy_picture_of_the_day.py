@@ -11,14 +11,15 @@ from extract_extension import extract_extension
 def astronomy_picture_of_the_day(token):
     api_url = 'https://api.nasa.gov/planetary/apod'
     params = {'api_key': token,
-              'count': 30,
+              'count': 40,
               'thumbs': True}
     response = requests.get(api_url, params=params)
     response.raise_for_status()
     for index in range(len(response.json())):
-        filename = f'image/NASA_APOD_{str(index)}' \
-                   f'{extract_extension(response.json()[index]["url"])}'
-        download_images(response.json()[index]['url'], filename)
+        if extract_extension(response.json()[index]["url"]) != '':
+            filename = f'image/NASA_APOD_{str(index)}' \
+                       f'{extract_extension(response.json()[index]["url"])}'
+            download_images(response.json()[index]['url'], filename)
 
 
 def main():
