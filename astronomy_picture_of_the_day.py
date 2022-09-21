@@ -16,7 +16,7 @@ def astronomy_picture_of_the_day(token):
     response = requests.get(api_url, params=params)
     response.raise_for_status()
     for index in range(len(response.json())):
-        if extract_extension(response.json()[index]["url"]) != '':
+        if extract_extension(response.json()[index]["url"]):
             filename = f'image/NASA_APOD_{str(index)}' \
                        f'{extract_extension(response.json()[index]["url"])}'
             download_images(response.json()[index]['url'], filename)
