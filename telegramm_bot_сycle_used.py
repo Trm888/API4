@@ -9,15 +9,15 @@ from environs import Env
 
 def photos_send(time_sec, token, chat_id):
     bot = telegram.Bot(token=token)
-    path_name = []
+    path_names = []
     for address, dirs, files in os.walk('image'):
         for name in files:
             bot.send_document(chat_id=chat_id, document=open(os.path.join(address, name), 'rb'))
-            path_name.append(os.path.join(address, name))
+            path_names.append(os.path.join(address, name))
             time.sleep(time_sec)
 
     while True:
-        bot.send_document(chat_id=chat_id, document=open(random.choice(path_name), 'rb'))
+        bot.send_document(chat_id=chat_id, document=open(random.choice(path_names), 'rb'))
         time.sleep(time_sec)
 
 
