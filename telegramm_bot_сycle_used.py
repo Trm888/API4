@@ -11,10 +11,10 @@ def send_photos(time_sec, token, chat_id):
     bot = telegram.Bot(token=token)
     path_names = []
     for address, dirs, files in os.walk('image'):
-        for name in files:
-            with open(os.path.join(address, name), 'rb') as photo:
+        for file in files:
+            with open(os.path.join(address, file), 'rb') as photo:
                 bot.send_document(chat_id=chat_id, document=photo)
-                path_names.append(os.path.join(address, name))
+                path_names.append(os.path.join(address, file))
                 time.sleep(time_sec)
 
     while True:
