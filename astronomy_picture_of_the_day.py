@@ -19,8 +19,8 @@ def download_astronomy_picture_day(token):
     for index in range(len(decoded_response)):
         extension = extract_extension(decoded_response[index]["url"])
         if extension:
-            filename = Path(os.getcwd(), 'image', f'NASA_APOD_{str(index)}{extension}')
-            download_image(decoded_response[index]['url'], filename)
+            filepath = Path(os.getcwd(), 'image', f'NASA_APOD_{str(index)}{extension}')
+            download_image(decoded_response[index]['url'], filepath)
 
 
 def main():
