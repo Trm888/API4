@@ -19,7 +19,7 @@ def download_astronomy_picture_day(token):
     for index in range(len(serialized_response)):
         extension = extract_extension(serialized_response[index]["url"])
         if extension:
-            filename = f'image/NASA_APOD_{str(index)}{extension}'
+            filename = Path(os.getcwd(), 'image', f'NASA_APOD_{str(index)}{extension}')
             download_image(serialized_response[index]['url'], filename)
 
 
@@ -27,8 +27,7 @@ def main():
     env = Env()
     env.read_env()
     token = env.str("NASA_TOKEN")
-    Path(os.getcwd() + '/image').mkdir(parents=True, exist_ok=True)
-
+    Path(os.getcwd(), 'image').mkdir(parents=True, exist_ok=True)
     download_astronomy_picture_day(token)
 
 if __name__ == '__main__':

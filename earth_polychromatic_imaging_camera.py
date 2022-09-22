@@ -21,7 +21,7 @@ def download_earth_polychromatic_images(token):
             f'{image_date.day:02d}/png/{serialized_response[index]["image"]}.png',
             params=params)
         extension = extract_extension(image_response.url)
-        filename = f'image/NASA_EPIC_{str(index)}{extension}'
+        filename = Path(os.getcwd(), 'image', f'NASA_EPIC_{str(index)}{extension}')
         with open(filename, 'wb') as file:
             file.write(image_response.content)
 
@@ -30,7 +30,7 @@ def main():
     env = Env()
     env.read_env()
     token = env.str("NASA_TOKEN")
-    Path(os.getcwd() + '/image').mkdir(parents=True, exist_ok=True)
+    Path(os.getcwd(), 'image').mkdir(parents=True, exist_ok=True)
 
     download_earth_polychromatic_images(token)
 
