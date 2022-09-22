@@ -5,7 +5,7 @@ from pathlib import Path
 import requests
 from environs import Env
 
-from download_image import download_images
+from download_image import download_image
 
 
 def fetch_spacex_image(id):
@@ -14,7 +14,7 @@ def fetch_spacex_image(id):
     response.raise_for_status()
     for link_number, link in enumerate(response.json()["links"]['flickr']['original']):
         filename = 'image/spacex' + str(link_number) + '.jpg'
-        download_images(link, filename)
+        download_image(link, filename)
 
 
 def main():

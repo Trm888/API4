@@ -4,7 +4,7 @@ from pathlib import Path
 import requests
 from environs import Env
 
-from download_image import download_images
+from download_image import download_image
 from extract_extension import extract_extension
 
 
@@ -17,10 +17,10 @@ def astronomy_picture_of_the_day(token):
     response.raise_for_status()
     serialized_response = response.json()
     for index in range(len(serialized_response)):
-        if extract_extension(serialized_response[index]["url"]):
-            filename = f'image/NASA_APOD_{str(index)}' \
-                       f'{extract_extension(serialized_response[index]["url"])}'
-            download_images(serialized_response[index]['url'], filename)
+        extension = extract_extension(serialized_response[index]["url"])
+        if extension:
+            filename = f'image/NASA_APOD_{str(index)}{extension}'
+            download_image(serialized_response[index]['url'], filename)
 
 
 def main():

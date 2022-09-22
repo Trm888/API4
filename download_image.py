@@ -1,7 +1,7 @@
 import requests
 
 
-def download_images(url, path):
+def download_image(url, path):
     headers = {'User-Agent': ''}
     response = requests.get(url, headers=headers)
     response.raise_for_status()

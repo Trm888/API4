@@ -7,7 +7,7 @@ import telegram
 from environs import Env
 
 
-def photo_send(time_sec, token, chat_id):
+def photos_send(time_sec, token, chat_id):
     bot = telegram.Bot(token=token)
     path_name = []
     for address, dirs, files in os.walk('image'):

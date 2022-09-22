@@ -16,12 +16,12 @@ def main():
     env.read_env()
     token = env.str("TELEGRAMM_TOKEN")
     chat_id = env.str("CHAT_ID")
-    path_name = []
+    path_names = []
     for address, dirs, files in os.walk('image'):
         for name in files:
-            path_name.append(os.path.join(address, name))
+            path_names.append(os.path.join(address, name))
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('--image_path', default=random.choice(path_name), help='время в секундах между пупбликациями')
+    parser.add_argument('--image_path', default=random.choice(path_names), help='время в секундах между пупбликациями')
     args = parser.parse_args()
     photo_send(args.image_path, token, chat_id)
 
