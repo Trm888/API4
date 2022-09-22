@@ -18,8 +18,6 @@ def download_fetch_spacex_image(id):
 
 
 def main():
-    env = Env()
-    env.read_env()
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('--id', default='latest', help='Id полета')
     args = parser.parse_args()
