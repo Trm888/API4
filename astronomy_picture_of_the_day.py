@@ -15,12 +15,12 @@ def download_astronomy_picture_day(token):
               'thumbs': True}
     response = requests.get(api_url, params=params)
     response.raise_for_status()
-    serialized_response = response.json()
-    for index in range(len(serialized_response)):
-        extension = extract_extension(serialized_response[index]["url"])
+    decoded_response = response.json()
+    for index in range(len(decoded_response)):
+        extension = extract_extension(decoded_response[index]["url"])
         if extension:
             filename = Path(os.getcwd(), 'image', f'NASA_APOD_{str(index)}{extension}')
-            download_image(serialized_response[index]['url'], filename)
+            download_image(decoded_response[index]['url'], filename)
 
 
 def main():

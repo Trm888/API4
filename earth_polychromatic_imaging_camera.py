@@ -13,12 +13,12 @@ def download_earth_polychromatic_images(token):
     params = {'api_key': token}
     response = requests.get(api_url, params=params)
     response.raise_for_status()
-    serialized_response = response.json()
-    for index in range(len(serialized_response)):
-        image_date = datetime.date.fromisoformat(serialized_response[index]['date'][:10])
+    decoded_response = response.json()
+    for index in range(len(decoded_response)):
+        image_date = datetime.date.fromisoformat(decoded_response[index]['date'][:10])
         image_response = requests.get(
             f'https://epic.gsfc.nasa.gov/archive/natural/{image_date.year}/{image_date.month:02d}/'
-            f'{image_date.day:02d}/png/{serialized_response[index]["image"]}.png',
+            f'{image_date.day:02d}/png/{decoded_response[index]["image"]}.png',
             params=params)
         extension = extract_extension(image_response.url)
         filename = Path(os.getcwd(), 'image', f'NASA_EPIC_{str(index)}{extension}')
