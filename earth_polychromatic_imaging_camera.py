@@ -13,11 +13,12 @@ def earth_polychromatic_imaging_camera(token):
     params = {'api_key': token}
     response = requests.get(api_url, params=params)
     response.raise_for_status()
-    for index in range(len(response.json())):
-        image_date = datetime.date.fromisoformat(response.json()[index]['date'][:10])
+    serialized_response = response.json()
+    for index in range(len(serialized_response)):
+        image_date = datetime.date.fromisoformat(serialized_response[index]['date'][:10])
         image_response = requests.get(
             f'https://epic.gsfc.nasa.gov/archive/natural/{image_date.year}/{image_date.month:02d}/'
-            f'{image_date.day:02d}/png/{response.json()[index]["image"]}.png',
+            f'{image_date.day:02d}/png/{serialized_response[index]["image"]}.png',
             params=params)
         filename = f'image/NASA_EPIC_{str(index)}{extract_extension(image_response.url)}'
         with open(filename, 'wb') as file:
