@@ -8,7 +8,7 @@ from environs import Env
 from extract_extension import extract_extension
 
 
-def earth_polychromatic_imaging_camera(token):
+def download_earth_polychromatic_images(token):
     api_url = 'https://api.nasa.gov/EPIC/api/natural'
     params = {'api_key': token}
     response = requests.get(api_url, params=params)
@@ -31,7 +31,7 @@ def main():
     token = env.str("NASA_TOKEN")
     Path(os.getcwd() + '/image').mkdir(parents=True, exist_ok=True)
 
-    earth_polychromatic_imaging_camera(token)
+    download_earth_polychromatic_images(token)
 
 
 if __name__ == '__main__':

@@ -8,7 +8,7 @@ from download_image import download_image
 from extract_extension import extract_extension
 
 
-def astronomy_picture_of_the_day(token):
+def download_astronomy_picture_day(token):
     api_url = 'https://api.nasa.gov/planetary/apod'
     params = {'api_key': token,
               'count': 40,
@@ -29,7 +29,7 @@ def main():
     token = env.str("NASA_TOKEN")
     Path(os.getcwd() + '/image').mkdir(parents=True, exist_ok=True)
 
-    astronomy_picture_of_the_day(token)
+    download_astronomy_picture_day(token)
 
 if __name__ == '__main__':
     main()

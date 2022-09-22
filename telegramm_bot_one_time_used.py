@@ -6,7 +6,7 @@ import telegram
 from environs import Env
 
 
-def photo_send(image_path, token, chat_id):
+def send_photo(image_path, token, chat_id):
     bot = telegram.Bot(token=token)
     bot.send_document(chat_id=chat_id, document=open(image_path, 'rb'))
 
@@ -23,7 +23,7 @@ def main():
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('--image_path', default=random.choice(path_names), help='время в секундах между пупбликациями')
     args = parser.parse_args()
-    photo_send(args.image_path, token, chat_id)
+    send_photo(args.image_path, token, chat_id)
 
 
 if __name__ == '__main__':

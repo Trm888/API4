@@ -7,7 +7,7 @@ import telegram
 from environs import Env
 
 
-def photos_send(time_sec, token, chat_id):
+def send_photos(time_sec, token, chat_id):
     bot = telegram.Bot(token=token)
     path_names = []
     for address, dirs, files in os.walk('image'):
@@ -30,7 +30,7 @@ def main():
     parser.add_argument('--time_sec', default=14400, help='время в секундах между пупбликациями')
     args = parser.parse_args()
 
-    photo_send(int(args.time_sec), token, chat_id)
+    send_photos(int(args.time_sec), token, chat_id)
 
 
 if __name__ == '__main__':
