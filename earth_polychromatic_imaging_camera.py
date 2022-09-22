@@ -21,7 +21,7 @@ def download_earth_polychromatic_images(token):
             f'{image_date.day:02d}/png/{decoded_response[index]["image"]}.png',
             params=params)
         extension = extract_extension(image_response.url)
-        filepath = Path(os.getcwd(), 'image', f'NASA_EPIC_{str(index)}{extension}')
+        filepath = Path(os.getcwd(), 'image', f'NASA_EPIC_{index}{extension}')
         with open(filepath, 'wb') as file:
             file.write(image_response.content)
 

@@ -13,7 +13,7 @@ def download_fetch_spacex_image(id):
     response = requests.get(api_url)
     response.raise_for_status()
     for link_number, link in enumerate(response.json()["links"]['flickr']['original']):
-        filepath = Path(os.getcwd(), 'image', f'spacex{str(link_number)}.jpg')
+        filepath = Path(os.getcwd(), 'image', f'spacex{link_number}.jpg')
         download_image(link, filepath)
 
 
