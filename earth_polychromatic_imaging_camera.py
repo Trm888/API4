@@ -20,7 +20,8 @@ def download_earth_polychromatic_images(token):
             f'https://epic.gsfc.nasa.gov/archive/natural/{image_date.year}/{image_date.month:02d}/'
             f'{image_date.day:02d}/png/{serialized_response[index]["image"]}.png',
             params=params)
-        filename = f'image/NASA_EPIC_{str(index)}{extract_extension(image_response.url)}'
+        extension = extract_extension(image_response.url)
+        filename = f'image/NASA_EPIC_{str(index)}{extension}'
         with open(filename, 'wb') as file:
             file.write(image_response.content)
 
