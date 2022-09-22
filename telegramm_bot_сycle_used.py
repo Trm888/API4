@@ -12,13 +12,15 @@ def send_photos(time_sec, token, chat_id):
     path_names = []
     for address, dirs, files in os.walk('image'):
         for name in files:
-            bot.send_document(chat_id=chat_id, document=open(os.path.join(address, name), 'rb'))
-            path_names.append(os.path.join(address, name))
-            time.sleep(time_sec)
+            with open(os.path.join(address, name), 'rb') as photo:
+                bot.send_document(chat_id=chat_id, document=photo)
+                path_names.append(os.path.join(address, name))
+                time.sleep(time_sec)
 
     while True:
-        bot.send_document(chat_id=chat_id, document=open(random.choice(path_names), 'rb'))
-        time.sleep(time_sec)
+        with open(random.choice(path_names), 'rb') as random_photo:
+            bot.send_document(chat_id=chat_id, document=random_photo)
+            time.sleep(time_sec)
 
 
 def main():
